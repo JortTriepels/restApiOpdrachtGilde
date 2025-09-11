@@ -5,27 +5,51 @@ fetch("https://nominatim.openstreetmap.org/search?format=json&q=Gilde Opleidinge
         'Accept': 'application/json'
     }
 })
-.then(response => response.json())
-.then(data => {
-    console.log("API Result:", data);
+    .then(response => response.json())
+    .then(data => {
+        console.log("API Result:", data);
 
-    const locatie = data[0];
-    const lat = locatie.lat;
-    const lon = locatie.lon;
+       
+        var wantedLocation = "marathonlaan"
 
-    
-    const map = L.map('map').setView([lat, lon], 13);
+        document.getElementById("enterButton").onclick = function(){
+            wantedLocation = document.getElementById("textBox").textContent;
+            
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+        }
 
-    
-    L.marker([lat, lon])
-      .addTo(map)
-      .bindPopup("Neer")
-      .openPopup();
-})
-.catch(error => {
-    console.error("Fout bij API request:", error);
-});
+
+       
+
+        //const locatie = data.find(item => item.display_name.includes(wantedLocation));
+        const locatie = data.find(item => item.display_name.toLowerCase().includes(wantedLocation.toLowerCase()));
+
+        
+
+
+
+        if (locatie) {
+            //const locatie = data[6];
+            const lat = locatie.lat;
+            const lon = locatie.lon;
+
+
+
+
+
+            const map = L.map('map').setView([lat, lon], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+
+            L.marker([lat, lon])
+                .addTo(map)
+                .bindPopup(wantedLocation.toLowerCase())
+                .openPopup();
+        }
+    })
+    .catch(error => {
+        console.error("Fout bij API request:", error);
+    });
