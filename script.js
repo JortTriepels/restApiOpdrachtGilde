@@ -13,9 +13,9 @@ fetch("https://nominatim.openstreetmap.org/search?format=json&q=Gilde Opleidinge
         var wantedLocation = "marathonlaan"
 
         document.getElementById("enterButton").onclick = function(){
-            wantedLocation = document.getElementById("textBox").textContent;
+            wantedLocation = document.getElementById("textBox").value;
             
-
+    
         }
 
 
