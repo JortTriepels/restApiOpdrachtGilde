@@ -1,6 +1,6 @@
 
 
-fetch("https://nominatim.openstreetmap.org/search?format=json&q=Neer", {
+fetch("https://nominatim.openstreetmap.org/search?format=json&q=Gilde Opleidingen", {
     headers: {
         'Accept': 'application/json'
     }
