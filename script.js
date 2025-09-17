@@ -36,20 +36,25 @@ fetch("https://nominatim.openstreetmap.org/search?format=json&q=Gilde Opleidinge
 
 
 
-
-            const map = L.map('map').setView([lat, lon], 13);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-
-
-            L.marker([lat, lon])
-                .addTo(map)
-                .bindPopup(wantedLocation.toLowerCase())
-                .openPopup();
+         plaatsMarkerOpKaart(lat, lon, wantedLocation);
         }
     })
     .catch(error => {
         console.error("Fout bij API request:", error);
     });
+
+    function plaatsMarkerOpKaart(lat, lon, locationName) {
+    const map = L.map('map').setView([lat, lon], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([lat, lon])
+        .addTo(map)
+        .bindPopup(locationName.toLowerCase())
+        .openPopup();
+}
+
+    
+    
