@@ -46,5 +46,6 @@ function plaatsMarkerOpKaart(lat, lon, locationName) {
         .openPopup();
 }
 
-// call async function
+
+//it shall be done huzaahh
 doStuff();
